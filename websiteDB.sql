@@ -3,6 +3,7 @@ use gkodali;
 drop table if exists Product;
 drop table if exists Manufacturer;
 drop table if exists Customer;
+drop table if exists Cart;
 drop table if exists Addresses;
 
 create table Addresses(
@@ -17,6 +18,10 @@ create table Addresses(
   #constraint uniquePair unique index(musicianId,bandId)
 )engine=InnoDB,collate=latin1_general_cs;
 
+create table Cart(
+  cartId int not null primary key auto_increment
+)engine=InnoDB,collate=latin1_general_cs;
+
 create table Customer(
   customerId int not null primary key auto_increment,
   firstName varchar(50),
@@ -27,7 +32,9 @@ create table Customer(
   cardNumber int (100),
   cardExp varchar(100),
   cardCVC int(4), 
-  foreign key (addressId) references Addresses(addressId)
+  cartId int(100),
+  foreign key (addressId) references Addresses(addressId),
+  foreign key (cartId) references Cart(cartId)
 )engine=InnoDB,collate=latin1_general_cs;
 
 create table Manufacturer (
@@ -49,4 +56,3 @@ create table Product (
 
 insert into Manufacturer (manufacturerId,comapnyName) values (1, 'Lou');
 select * from Manufacturer;
-
