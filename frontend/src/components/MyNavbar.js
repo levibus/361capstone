@@ -8,7 +8,7 @@ function MyNavbar() {
   const isCategoriesActive = location.pathname.startsWith("/categories");
 
   return (
-    <Navbar bg="light" expand="lg" fixed="top" className="px-3">
+    <Navbar bg="info" expand="lg" fixed="top" className="px-3">
       <Navbar.Brand href="/">
         <img
           id="navbar-logo"
@@ -33,8 +33,13 @@ function MyNavbar() {
             <NavDropdown.Item href="/categories/shirts">
               Shirts
             </NavDropdown.Item>
+            <NavDropdown.Item href="/categories/accessories">
+              Accessories
+            </NavDropdown.Item>
           </NavDropdown>
-
+          <Nav.Link as={RRNavLink} to="/sale">
+            Sales
+          </Nav.Link>
           <Nav.Link as={RRNavLink} to="/signin">
             Sign in
           </Nav.Link>
