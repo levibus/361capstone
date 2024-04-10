@@ -61,10 +61,12 @@ create table Product (
  ("78596", 	"7086", 	"233 180th st", 	"CT", 	"82934", 	"USA", 	"addressId"), 
  ("35119", 	"9584", 	"505 marcell ave ", "VA", 	"50210", 	"USA", 	"addressId");
 
+ insert into Cart
+ (cartId) values (20);
  
 insert into Customer 
  (customerId, 	firstName, 	lastName, 	username,		password, 		addressId, 	cardNumber, 	   cardExp, cardCVC, 	cartId) values 
- (1, 			"Jamal", 	"McAdams", 	"JamalMCA", 	"Password1", 	72133,		"905550485559099", "04/28", "272", 		"20"),
+ ("1", 			"Jamal", 	"McAdams", 	"JamalMCA", 	"Password1", 	"72133",	"905550485559099", "04/28", "272", 		"20"),
  ("2", 			"Kamel", 	"Noah", 	"Camel", 		"Password2", 	"72686", 	"814795832036662","05/24", 	"382", 		"21"), 
  ("3", 			"Taylor", 	"Fend", 	"TaylorFend", 	"Password3", 	"49368", 	"9519683187072534","07/24", "933", 		"22"), 
  ("4", 			"Jordan", 	"Adams", 	"JAdams", 		"Password4", 	"29946", 	"4971401664709365","03/26", "283", 		"23"), 
@@ -84,10 +86,10 @@ insert into Customer
  ("93303", 		"Hoodie", 						"S-XL", 	"7", 			"4.5", 		"LazyDog", 				"404"), 
  ("14626", 		"Zipper Jacket", 				"S-XL", 	"7", 			"4.7", 		"Puss and Boots",		"404"),
  ("89559",		"Rain Coat", 					"S-XL", 	"8", 			"4.7", 		"Count Drac", 			"404"), 
- ("83873",		"White Tee", 					"S-XL", 	"5", 			"5.0", 		"TT",				"404"),
- ("56552", 		"Black Tee", 					"S-XL", 	"5", 			"5.0", 		"TT", 				"404"), 
- ("68054", 		"Blue Tee", 					"S-XL", 	"5", 			"5.0", 		"TT",				"404"),
- ("93542", 		"Red Tee", 						"S-XL", 	"5", 			"5.0", 		"TT", 				"404"), 
+ ("83873",		"White Tee", 					"S-XL", 	"5", 			"5.0", 		"Shirts",				"404"),
+ ("56552", 		"Black Tee", 					"S-XL", 	"5", 			"5.0", 		"Shirts", 				"404"), 
+ ("68054", 		"Blue Tee", 					"S-XL", 	"5", 			"5.0", 		"Shirts",				"404"),
+ ("93542", 		"Red Tee", 						"S-XL", 	"5", 			"5.0", 		"Shirts", 				"404"), 
  ("52209", 		"Black Boots", 					"S-XL", 	"14", 			"4.7", 		"Puss and Boots",		"606"),
  ("33792", 		"Brown Boots", 					"S-XL", 	"14", 			"4.7", 		"Puss and Boots", 		"606"), 
  ("27433", 		"White Sneakers", 				"S-XL", 	"10", 			"4.7", 		"Puss and Boots",		"606"),
