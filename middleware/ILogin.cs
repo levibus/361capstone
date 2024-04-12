@@ -6,7 +6,7 @@ public interface ILogin
     public bool accessLoginInformation();
 
     // Declare a property
-    string SomeProperty { get; set; }
+    //string SomeProperty { get; set; }
 }
 
 
