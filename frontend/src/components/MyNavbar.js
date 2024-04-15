@@ -8,7 +8,7 @@ function MyNavbar() {
   const isCategoriesActive = location.pathname.startsWith("/categories");
 
   return (
-    <Navbar bg="info" expand="lg" fixed="top" className="px-3">
+    <Navbar bg="info" expand="md" fixed="top" className="px-3">
       <Navbar.Brand href="/">
         <img
           id="navbar-logo"

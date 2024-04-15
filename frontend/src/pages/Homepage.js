@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import HomePageCarousel from "../components/HomePageCarousel";
 
 function Homepage() {
   return (
@@ -7,6 +8,7 @@ function Homepage() {
       <Row>
         <Col xs={12} lg={7} xl={8}>
           <p>HomePage</p>
+          <HomePageCarousel />
         </Col>
         <Col xs={12} lg={5} xl={4}></Col>
       </Row>
