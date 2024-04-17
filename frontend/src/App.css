@@ -36,10 +36,54 @@ Navbar
 .navbar-nav .active-dropdown a {
   color: rgba(0, 0, 0, 1);
 }
+.companyTitle {
+  margin-top: 15px;
+  font-size: 30px;
+  color: gold;
+}
 .App-link {
   color: #61dafb;
 }
 
+.main-carousel .carousel-control-prev,
+.main-carousel .carousel-control-next {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: auto;
+}
+
+.main-carousel .carousel-control-prev {
+  left: -70px;
+}
+
+.main-carousel .carousel-control-next {
+  right: -70px;
+}
+.main-modal .modal-image-container {
+  position: relative;
+}
+
+.main-modal .modal-body {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  text-align: center;
+}
+.full-width-image img {
+  width: 100%;
+}
+.IMGrid {
+  transition: box-shadow 0.3s ease;
+}
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.IMGrid:hover {
+  cursor: pointer;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.35);
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
