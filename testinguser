@@ -2,11 +2,6 @@ using System;
 
 public class User
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Username { get; set; }
-    private string Password { get; set; }
-
     public User(string firstName, string lastName, string username, string password)
     {
         FirstName = firstName;
@@ -22,18 +17,5 @@ class Program
     {
         // Creating a new user
         User newUser = new User("John", "Doe", "johndoe", "password123");
-
-        // Authenticating the user
-        Console.WriteLine("Enter your password:");
-        string enteredPassword = Console.ReadLine();
-
-        if (newUser.Authenticate(enteredPassword))
-        {
-            Console.WriteLine("Authentication successful!");
-        }
-        else
-        {
-            Console.WriteLine("Authentication failed. Incorrect password.");
-        }
     }
 }
