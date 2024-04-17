@@ -13,38 +13,35 @@ public class LoginAccessor
     public int accessLoginInformation(string username, string password)
     {
         object customerId = -1;
-        string query = "SELECT * FROM dbo.Customer";
-        //string query = "SELECT customerId FROM Customer WHERE username = @username AND password = @password";
-        SqlConnection conn = new SqlConnection("Server=localhost;Port=1433;Database=master;Trusted_Connection=True;Data Source=.\\SQLEXPRESS"); // change to SQL server info
-        using (SqlCommand command = new SqlCommand(query))
+        string query = "SELECT customerId FROM Customer WHERE username = @username AND password = @password";
+
+        using (SqlConnection conn = new SqlConnection())
         {
-            //command.Parameters.AddWithValue("@username", username);
-            //command.Parameters.AddWithValue("@password", password);
-
-            //command.Parameters.Add("@username", SqlDbType.VarChar);
-            //command.Parameters["@username"].Value = username;
-            //command.Parameters.Add("@password", SqlDbType.VarChar);
-            //command.Parameters["@password"].Value = password;
-            //try
-            //{
+            conn.ConnectionString = "Server=DESKTOP-QEQG0AR;Database=master;Trusted_Connection=true";
+            try
+            {
                 conn.Open();
-            Console.WriteLine(conn.AccessToken.ToString());
-                //customerId = command.ExecuteScalar();
-                if (customerId != null)
+            }
+            catch 
+            {
+                return -2; // error in connection
+            }
+
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+
+                customerId = command.ExecuteScalar();
+                if (customerId == null)
                 {
-                }
-                else
-                {
-                    customerId = 4;
+                    customerId = -1; // customer not found
                 }
 
-                conn.Close();
-                return (int)customerId;
-            //}
-            //catch
-            //{
-                //return -2; // error in connection
-            //}
+            }
+            conn.Close();
         }
+        return (int)customerId;
     }
 }
+

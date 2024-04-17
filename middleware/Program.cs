@@ -4,12 +4,12 @@ namespace _361capstone
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            //var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddRazorPages();
+            //// Add services to the container.
+            //builder.Services.AddRazorPages();
 
-            var app = builder.Build();
+            //var app = builder.Build();
 
             //// Configure the HTTP request pipeline.
             //if (!app.Environment.IsDevelopment())
@@ -30,8 +30,7 @@ namespace _361capstone
 
             //app.Run();
 
-            LoginAccessor newAccessor = new LoginAccessor();
-            var loginRet = newAccessor.accessLoginInformation("JamalMCA", "Password1");
+            
 
         }
     }
