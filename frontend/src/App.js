@@ -7,8 +7,6 @@ import MyNavbar from "./components/MyNavbar";
 import SignInPage from "./pages/user/SigninPage";
 import ShirtsPage from "./pages/Categories/ShirtsPage";
 import PantsPage from "./pages/Categories/PantsPage";
-import SalePage from "./pages/Sale/SalePage";
-import AccessoriesPage from "./pages/Categories/AccessoriesPage";
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signin" element={<Signin />} />
             <Route path="/categories/pants" element={<PantsPage />} />
             <Route path="/categories/shirts" element={<ShirtsPage />} />
             <Route
