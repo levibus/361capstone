@@ -7,7 +7,7 @@ import MyNavbar from "./components/MyNavbar";
 import Signin from "./pages/user/SigninPage";
 import ShirtsPage from "./pages/Categories/ShirtsPage";
 import PantsPage from "./pages/Categories/PantsPage";
-
+import CreateAccountPage from "./pages/user/CreateAccountPage";
 function App() {
   return (
     <Router>
@@ -17,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/newuser" element={<CreateAccountPage />} />
             <Route path="/categories/pants" element={<PantsPage />} />
             <Route path="/categories/shirts" element={<ShirtsPage />} />
           </Routes>
