@@ -17,5 +17,6 @@ class Program
     {
         // Creating a new user
         User newUser = new User("John", "Doe", "johndoe", "password123");
+        Createuser(newUser);
     }
 }
