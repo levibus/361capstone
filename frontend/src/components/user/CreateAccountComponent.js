@@ -24,7 +24,7 @@ function CreateAccount() {
         // Need our backend API url for signup.
         // I believe this is in Program.cs routing function but nothing is defined so ... :O Not sure- ask on wendesday
         // Example of what it would look like-
-        "http://localhost:3000",
+        "http://localhost:5053",
         {
           method: "POST",
           headers: {
