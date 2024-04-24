@@ -11,8 +11,8 @@ using _361capstone.Models;
 
 namespace _361capstone.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
 
@@ -22,40 +22,36 @@ namespace _361capstone.Controllers
             _configuration = configuration;
         }
 
+        //[HttpGet]
 
-        [HttpGet]
-        public JsonResult Get()
-        {
-            string query = @"
-                            select CustomerId, lastName from
-                            dbo.Customer
-                            ";
+        //public JsonResult Get(string username, string password)
+        //{
+        //    string query = "SELECT customerId FROM Customer WHERE username='JamalMCA' AND password='Password1'";
 
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
+        //    DataTable table = new DataTable();
+        //    //string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection("Server=DESKTOP-QEQG0AR;Database=master;Trusted_Connection=true"))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            //myCommand.Parameters.AddWithValue("@username", cust.username);
+        //            //myCommand.Parameters.AddWithValue("@password", cust.password);
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            myCon.Close();
+        //        }
+        //    }
 
-            return new JsonResult(table);
-        }
+        //    return new JsonResult(table);
+        //}
 
         [HttpPost]
         public JsonResult Post(Customer cust)
         {
-            string query = @"
-                           insert into dbo.Customer
-                           values (@firstName)
-                            ";
+            string query = "INSERT INTO  Customer(firstName, lastName, username, password) values(@firstName, @lastName, @username, @password)";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
@@ -66,6 +62,9 @@ namespace _361capstone.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
+                    myCommand.Parameters.AddWithValue("@lastName", cust.lastName);
+                    myCommand.Parameters.AddWithValue("@username", cust.username);
+                    myCommand.Parameters.AddWithValue("@password", cust.password);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
@@ -76,63 +75,55 @@ namespace _361capstone.Controllers
             return new JsonResult("Added Successfully");
         }
 
+        //[HttpPut]                                        IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
+        //public JsonResult Put(Customer cust)
+        //{
+        //    string query = "UPDATE Customer SET firstName= @firstName WHERE customerId=@customerId";
 
-        [HttpPut]
-        public JsonResult Put(Customer cust)
-        {
-            string query = @"
-                           update dbo.Customer
-                           set firstName= @firstName
-                            where customerId=@customerId
-                            ";
+        //    DataTable table = new DataTable();
+        //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            myCommand.Parameters.AddWithValue("@customerId", cust.customerId);
+        //            myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            myCon.Close();
+        //        }
+        //    }
 
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myCommand.Parameters.AddWithValue("@customerId", cust.customerId);
-                    myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
+        //    return new JsonResult("Updated Successfully");
+        //}
 
-            return new JsonResult("Updated Successfully");
-        }
+        //[HttpDelete("{id}")]
+        //public JsonResult Delete(Customer cust)
+        //{
+        //    string query = "DELETE FROM Customer WHERE customerId=@customerId";
 
-        [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
-        {
-            string query = @"
-                           delete from dbo.Customer
-                            where customerId=@customerId
-                            ";
+        //    DataTable table = new DataTable();
+        //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            myCommand.Parameters.AddWithValue("@customerId", cust.customerId);
 
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myCommand.Parameters.AddWithValue("@customerId", id);
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            myCon.Close();
+        //        }
+        //    }
 
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
-
-            return new JsonResult("Deleted Successfully");
-        }
+        //    return new JsonResult("Deleted Successfully");
+        //}
 
 
     }
