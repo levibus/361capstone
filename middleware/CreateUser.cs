@@ -12,20 +12,25 @@
 //namespace webpage
 //{
 //    public class CreateUserAccessor
-//    {  
-//       public int Createuser(User user){ //user class doesn't exist right now
+//    {
+//        public int Createuser(UserRegistration user)
+//        { //user class doesn't exist right now
 //            object customerId = -1;
-//            using (SqlConnection conn  = new SqlConnection()){
+//            using (SqlConnection conn = new SqlConnection())
+//            {
 //                conn.ConnectionString = "Server=DESKTOP-QEQG0AR;Database=master;Trusted_Connection=True";
-//                try{
+//                try
+//                {
 //                    conn.Open();
 //                }
-//                catch (Exception ex) {
+//                catch (Exception ex)
+//                {
 //                    Console.WriteLine("Error - Could not open connection");
 //                }
 
 //                string sqlInsert = "INSERT INTO  Customer(firstName, lastName, username, password) values (@firstName, @lastName, @username, @password)";
-//                using (SqlCommand cmd = new SqlCommand(sqlInsert, conn)) {
+//                using (SqlCommand cmd = new SqlCommand(sqlInsert, conn))
+//                {
 
 //                    cmd.Parameters.Add("@fistName", user.fistName);
 //                    cmd.Parameters.Add("@lastName", user.lastName);
@@ -34,10 +39,12 @@
 
 //                    //check if the amout was added
 //                    int rowsAffected = cmd.ExecuteNonQuery();
-//                    if (rowsAffected > 0) {
+//                    if (rowsAffected > 0)
+//                    {
 //                        Console.WriteLine("Rows Added");
 //                    }
-//                    else {
+//                    else
+//                    {
 //                        Console.WriteLine("No Rows Added");
 //                    }
 
@@ -45,7 +52,7 @@
 
 //                    using (SqlCommand command = new SqlCommand(sqlGetCustomerId, conn))
 //                    {
-//                        command.Parameters.AddWithValue("@username", user.username); 
+//                        command.Parameters.AddWithValue("@username", user.username);
 //                        command.Parameters.AddWithValue("@password", user.password);
 
 //                        customerId = command.ExecuteScalar();

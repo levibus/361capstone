@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import Signin from "../../components/user/SignInComponent";
+import { variables } from "../Variables";
+
 function SignInPage() {
   return (
     <Container>

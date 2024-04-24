@@ -8,6 +8,8 @@ import Signin from "./pages/user/SigninPage";
 import ShirtsPage from "./pages/Categories/ShirtsPage";
 import PantsPage from "./pages/Categories/PantsPage";
 import CreateAccountPage from "./pages/user/CreateAccountPage";
+// import {BrowserRouter, Route, Switch, NavLink} from 'react-router-dom';     from video
+
 function App() {
   return (
     <Router>
