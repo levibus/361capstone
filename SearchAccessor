@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.Identity;
 public class SearchAccessor
 {
     string test = "5";
-    public int SearchSKU(string test)
+    public string SearchSKU(string test)
     {
         int code = Int32.Parse(test);
-        object SKU = -1;
-        string query = "SELECT p.SKU FROM Product as p WHERE p.SKU = @code ";
+        object itemName = "not found";
+        string query = "SELECT p.itemName FROM Product as p WHERE p.SKU = @code ";
 
         
         using (SqlConnection conn = new SqlConnection())
@@ -28,22 +28,22 @@ public class SearchAccessor
             }
             catch 
             {
-                return -2; // error in connection
+                return "null"; // error in connection
             }
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@code", code);
 
-                SKU = cmd.ExecuteScalar();
-                if (SKU == null)
+                itemName = cmd.ExecuteScalar();
+                if (itemName == null)
                 {
-                    SKU = -1; // customer not found
+                    itemName = "Item not found"; 
                 }
-
+                
             }
             conn.Close();
         }
-        return (int)SKU;
+        return (string)itemName;
     }
 }
