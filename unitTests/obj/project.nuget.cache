@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "03swBNbwTfsgQd2wvK5u6QEDC8q39+pSa6IQkZwcttrRIkszVc3jQW4aBQ933G77AxZjzBnFWPjzE4ONzHB64Q==",
+  "dgSpecHash": "DE/H0iJs0jECYeU8FPeeHOVytckbJvgp5aeFpBInDa0eLIB0ggF/XcHh3Wz1/SuCPq6Ov0n0uykexUU7ICBKEg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Levi Busching\\Documents\\CS361\\361capstone\\unitTests\\unitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Levi Busching\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.18\\microsoft.aspnetcore.jsonpatch.7.0.18.nupkg.sha512",
+    "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\7.0.18\\microsoft.aspnetcore.mvc.newtonsoftjson.7.0.18.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.codecoverage\\17.7.1\\microsoft.codecoverage.17.7.1.nupkg.sha512",
+    "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.net.test.sdk\\17.7.1\\microsoft.net.test.sdk.17.7.1.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.7.1\\microsoft.testplatform.objectmodel.17.7.1.nupkg.sha512",
@@ -13,6 +16,7 @@
     "C:\\Users\\Levi Busching\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Levi Busching\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\nuget.frameworks\\6.5.0\\nuget.frameworks.6.5.0.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\Levi Busching\\.nuget\\packages\\nunit.analyzers\\3.6.1\\nunit.analyzers.3.6.1.nupkg.sha512",

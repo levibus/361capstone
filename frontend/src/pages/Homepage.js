@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import HomePageComponent from "../components/HomePageComponent";
+import { variables } from "../Variables";
 function Homepage() {
   return (
     <Container className="py-3">

@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import CreateAccount from "../../components/user/CreateAccountComponent";
+import { variables } from "../Variables";
+
 function CreateAccountPage() {
   return (
     <Container>

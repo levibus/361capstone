@@ -37,3 +37,7 @@ C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\obj\Debug\net7.0\r
 C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\obj\Debug\net7.0\361capstone.pdb
 C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\obj\Debug\net7.0\361capstone.genruntimeconfig.cache
 C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\obj\Debug\net7.0\ref\361capstone.dll
+C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Levi Busching\Documents\CS361\361capstone\middleware\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
