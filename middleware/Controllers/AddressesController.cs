@@ -13,11 +13,11 @@ namespace _361capstone.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : ControllerBase
+    public class AddressesController : ControllerBase
     {
 
         private readonly IConfiguration _configuration;
-        public CustomerController(IConfiguration configuration)
+        public AddressesController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -82,59 +82,59 @@ namespace _361capstone.Controllers
         //        }
         //    }
 
-            //    return new JsonResult("Added Successfully");
-            //}
+        //    return new JsonResult("Added Successfully");
+        //}
 
-            //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
-            //public JsonResult Put(int customerId, string firstName)
-            //{
-            //    string query = "UPDATE Customer SET firstName= @firstName WHERE customerId=@customerId";
+        //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
+        //public JsonResult Put(int customerId, string firstName)
+        //{
+        //    string query = "UPDATE Customer SET firstName= @firstName WHERE customerId=@customerId";
 
-            //    DataTable table = new DataTable();
-            //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-            //    SqlDataReader myReader;
-            //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            //    {
-            //        myCon.Open();
-            //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
-            //        {
-            //            myCommand.Parameters.AddWithValue("@customerId", customerId);
-            //            myCommand.Parameters.AddWithValue("@firstName", firstName);
-            //            myReader = myCommand.ExecuteReader();
-            //            table.Load(myReader);
-            //            myReader.Close();
-            //            myCon.Close();
-            //        }
-            //    }
+        //    DataTable table = new DataTable();
+        //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            myCommand.Parameters.AddWithValue("@customerId", customerId);
+        //            myCommand.Parameters.AddWithValue("@firstName", firstName);
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            myCon.Close();
+        //        }
+        //    }
 
-            //    return new JsonResult("Updated Successfully");
-            //}
+        //    return new JsonResult("Updated Successfully");
+        //}
 
-            //[HttpDelete("{id}")]
-            //public JsonResult Delete(int customerId)
-            //{
-            //    string query = "DELETE FROM Customer WHERE customerId=@customerId";
+        //[HttpDelete("{id}")]
+        //public JsonResult Delete(int customerId)
+        //{
+        //    string query = "DELETE FROM Customer WHERE customerId=@customerId";
 
-            //    DataTable table = new DataTable();
-            //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-            //    SqlDataReader myReader;
-            //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            //    {
-            //        myCon.Open();
-            //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
-            //        {
-            //            myCommand.Parameters.AddWithValue("@customerId", customerId);
+        //    DataTable table = new DataTable();
+        //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            myCommand.Parameters.AddWithValue("@customerId", customerId);
 
-            //            myReader = myCommand.ExecuteReader();
-            //            table.Load(myReader);
-            //            myReader.Close();
-            //            myCon.Close();
-            //        }
-            //    }
+        //            myReader = myCommand.ExecuteReader();
+        //            table.Load(myReader);
+        //            myReader.Close();
+        //            myCon.Close();
+        //        }
+        //    }
 
-            //    return new JsonResult("Deleted Successfully");
-            //}
+        //    return new JsonResult("Deleted Successfully");
+        //}
 
 
-        }
     }
+}
