@@ -22,36 +22,11 @@ namespace _361capstone.Controllers
             _configuration = configuration;
         }
 
-        //[HttpGet]
+        [HttpGet]
 
-        //public JsonResult Get(string username, string password)
-        //{
-        //    string query = "SELECT customerId FROM Customer WHERE username='JamalMCA' AND password='Password1'";
-
-        //    DataTable table = new DataTable();
-        //    //string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
-        //    SqlDataReader myReader;
-        //    using (SqlConnection myCon = new SqlConnection("Server=DESKTOP-QEQG0AR;Database=master;Trusted_Connection=true"))
-        //    {
-        //        myCon.Open();
-        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
-        //        {
-        //            //myCommand.Parameters.AddWithValue("@username", cust.username);
-        //            //myCommand.Parameters.AddWithValue("@password", cust.password);
-        //            myReader = myCommand.ExecuteReader();
-        //            table.Load(myReader);
-        //            myReader.Close();
-        //            myCon.Close();
-        //        }
-        //    }
-
-        //    return new JsonResult(table);
-        //}
-
-        [HttpPost]
-        public JsonResult Post(Customer cust)
+        public JsonResult Get(Customer cust)  // string username, string password
         {
-            string query = "INSERT INTO  Customer(firstName, lastName, username, password) values(@firstName, @lastName, @username, @password)";
+            string query = @"SELECT customerId FROM Customer WHERE username= @username AND password=@password"; //WHERE username='waht' AND password='were'
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
@@ -61,9 +36,7 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
-                    myCommand.Parameters.AddWithValue("@lastName", cust.lastName);
-                    myCommand.Parameters.AddWithValue("@username", cust.username);
+                    myCommand.Parameters.AddWithValue("@username", cust.userName);
                     myCommand.Parameters.AddWithValue("@password", cust.password);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
@@ -72,11 +45,47 @@ namespace _361capstone.Controllers
                 }
             }
 
-            return new JsonResult("Added Successfully");
+            return new JsonResult(table);
         }
 
-        //[HttpPut]                                        IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
-        //public JsonResult Put(Customer cust)
+        //[HttpPost]
+        //public JsonResult Post(string firstName, string lastName, string username, string password)
+        //{
+        //    Console.WriteLine(firstName);
+        //    string query = @"INSERT INTO  Customer(firstName, lastName, username, password) values(@firstName, @lastName, @username, @password)";
+
+        //    DataTable table = new DataTable();
+        //    string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
+        //    SqlDataReader myReader;
+        //    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+        //    {
+        //        myCon.Open();
+        //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+        //        {
+        //            try
+        //            {
+        //                myCommand.Parameters.AddWithValue("@firstName", firstName);
+        //                myCommand.Parameters.AddWithValue("@lastName", lastName);
+        //                myCommand.Parameters.AddWithValue("@username", username);
+        //                myCommand.Parameters.AddWithValue("@password", password);
+        //                myReader = myCommand.ExecuteReader();
+        //                table.Load(myReader);
+        //                myReader.Close();
+        //                myCon.Close();
+        //            }
+        //            catch (Exception e) {
+        //                Console.WriteLine(e.Message);
+
+        //            }
+    
+        //        }
+        //    }
+
+        //    return new JsonResult("Added Successfully");
+        //}
+
+        //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
+        //public JsonResult Put(int customerId, string firstName)
         //{
         //    string query = "UPDATE Customer SET firstName= @firstName WHERE customerId=@customerId";
 
@@ -88,8 +97,8 @@ namespace _361capstone.Controllers
         //        myCon.Open();
         //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
         //        {
-        //            myCommand.Parameters.AddWithValue("@customerId", cust.customerId);
-        //            myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
+        //            myCommand.Parameters.AddWithValue("@customerId", customerId);
+        //            myCommand.Parameters.AddWithValue("@firstName", firstName);
         //            myReader = myCommand.ExecuteReader();
         //            table.Load(myReader);
         //            myReader.Close();
@@ -101,7 +110,7 @@ namespace _361capstone.Controllers
         //}
 
         //[HttpDelete("{id}")]
-        //public JsonResult Delete(Customer cust)
+        //public JsonResult Delete(int customerId)
         //{
         //    string query = "DELETE FROM Customer WHERE customerId=@customerId";
 
@@ -113,7 +122,7 @@ namespace _361capstone.Controllers
         //        myCon.Open();
         //        using (SqlCommand myCommand = new SqlCommand(query, myCon))
         //        {
-        //            myCommand.Parameters.AddWithValue("@customerId", cust.customerId);
+        //            myCommand.Parameters.AddWithValue("@customerId", customerId);
 
         //            myReader = myCommand.ExecuteReader();
         //            table.Load(myReader);

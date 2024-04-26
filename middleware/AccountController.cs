@@ -12,7 +12,7 @@
 //            {
 //                return BadRequest("Email is required");
 //            }            // Add logic to handle account creation, e.g., saving to a database            return Ok(new { message = "Account created successfully!" });
-//            else { return ; }
+//            else { return; }
 //        }
 
 //    }
