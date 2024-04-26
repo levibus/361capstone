@@ -1,14 +1,18 @@
-﻿namespace _361capstone;
+﻿using _361capstone.Models;
+using System.Diagnostics.Metrics;
 
-public class Product
+namespace _361capstone;
+
+public class Addresses
 {
-    public int SKU { get; set; }
-    public string itemName { get; set; }
-    public float cost { get; set; }
-    public string manufacturer { get; set; }
-    public int categoryId { get; set; }
-    public string img { get; set; }
-    public int imgId { get; set; }
+    public int addressId { get; set; }
+    public int customerId { get ; set; }
+    public string street { get; set; }
+    public string roomNumber { get; set; }
+    public string city { get; set; }
+    public string stateName { get; set; }
+    public int zipCode {  get; set; }
+    public string country { get; set; }
 
     public Product(int SKU, string itemName, float cost, string manufacturer, int categoryId, string img, int imgId)
     {

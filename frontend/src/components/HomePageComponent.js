@@ -54,7 +54,7 @@ import axios from "axios";function HomePageComponent() {
                 />
                 <Carousel.Caption>
                   <h3>{product.itemName}</h3>
-                  <p>Cost: ${product.cost}</p>
+                  <p>Cost: ${product.cost}</p> 
                   <p>Size: {product.size}</p>
                   <p>SKU: {product.sku}</p>
                 </Carousel.Caption>
