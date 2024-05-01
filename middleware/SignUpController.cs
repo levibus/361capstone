@@ -13,11 +13,11 @@ namespace _361capstone.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : ControllerBase
+    public class SignUpController : ControllerBase
     {
 
         private readonly IConfiguration _configuration;
-        public CustomerController(IConfiguration configuration)
+        public SignUpController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -136,4 +136,4 @@ namespace _361capstone.Controllers
 
 
     }
-    }
+}
