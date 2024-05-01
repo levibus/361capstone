@@ -22,7 +22,7 @@ CREATE TABLE Customer (
     customerId INT PRIMARY KEY IDENTITY,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
-    username VARCHAR(50),
+    username VARCHAR(50) UNIQUE,
     password VARCHAR(50),
     addressId INT NOT NULL,
     cardNumber VARCHAR(100),
