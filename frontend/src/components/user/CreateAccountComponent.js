@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 function CreateAccount() {
-  const [formData, setFormData] = useState({
+  const [createAccountForm, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -11,28 +13,31 @@ function CreateAccount() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const newFormData = { ...formData, [name]: value };
-    setFormData(newFormData);
-    localStorage.setItem("formData", JSON.stringify(newFormData));
+    const newCreateAccountForm = { ...createAccountForm, [name]: value };
+    setFormData(newCreateAccountForm);
+    localStorage.setItem(
+      "createAccountForm",
+      JSON.stringify(newCreateAccountForm)
+    );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = `http://localhost:5053/api/customer?firstName=${encodeURIComponent(
+      createAccountForm.firstName
+    )}&lastName=${encodeURIComponent(
+      createAccountForm.lastName
+    )}username=${encodeURIComponent(
+      createAccountForm.username
+    )}&password=${encodeURIComponent(createAccountForm.password)}`;
 
     try {
-      const response = await fetch(
-        // Need our backend API url for signup.
-        // I believe this is in Program.cs routing function but nothing is defined so ... :O Not sure- ask on wendesday
-        // Example of what it would look like-
-        "http://localhost:5053/api/goofy",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await axios.get(url, createAccountForm, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         console.log("Account created successfully!");
@@ -57,7 +62,7 @@ function CreateAccount() {
                     type="text"
                     name="firstName"
                     placeholder="Enter First Name"
-                    value={formData.firstName}
+                    value={createAccountForm.firstName}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -67,7 +72,7 @@ function CreateAccount() {
                     type="text"
                     name="lastName"
                     placeholder="Enter Last Name"
-                    value={formData.lastName}
+                    value={createAccountForm.lastName}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -77,7 +82,7 @@ function CreateAccount() {
                     type="email"
                     name="email"
                     placeholder="Enter email"
-                    value={formData.email}
+                    value={createAccountForm.email}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -88,7 +93,7 @@ function CreateAccount() {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={formData.password}
+                    value={createAccountForm.password}
                     onChange={handleChange}
                   />
                 </Form.Group>

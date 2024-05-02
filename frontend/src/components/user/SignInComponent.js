@@ -1,40 +1,55 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";function Signin() {
-  const [formData, setFormData] = useState({
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+function Signin() {
+  const [loginForm, setloginForm] = useState({
     username: "",
     password: "",
-  });  const handleChange = (e) => {
+  });
+  const navigate = useNavigate(); // Hook for navigation
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    const newFormData = { ...formData, [name]: value };
-    setFormData(newFormData);
-    localStorage.setItem("formData", JSON.stringify(newFormData));
-  };  const handleSubmit = async (e) => {
-    e.preventDefault();    try {
-      const response = await fetch(
-        // Need our backend API url for signup.
-        // I believe this is in Program.cs routing function but nothing is defined so ... :O Not sure- ask on wendesday
-        // Example of what it would look like-
-        "http://localhost:5053/api/customer",
-        {
-          method: "POST",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData),
-        }
-      );      
-      console.log("Received sign-in response:", response);
-      if (response.ok) {
+    const newLoginForm = { ...loginForm, [name]: value };
+    setloginForm(newLoginForm);
+    localStorage.setItem("loginForm", JSON.stringify(newLoginForm));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = `http://localhost:5053/api/customer?username=${encodeURIComponent(
+      loginForm.username
+    )}&password=${encodeURIComponent(loginForm.password)}`;
+
+    try {
+      const response = await axios.get(url, loginForm, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Received login:", response);
+      if (response.status === 200) {
         console.log("Account signing in successfully!");
+        navigate("/");
       } else {
         console.error("Error signing into account:", response.statusText);
       }
     } catch (error) {
       console.error("Error signing into account:", error);
+      if (error.response) {
+        console.error("Error Data:", error.response.data);
+        console.error("Error Status:", error.response.status);
+        console.error("Error Headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Error Request:", error.request);
+      } else {
+        console.error("Error", error.message);
+      }
     }
   };
+
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -49,28 +64,23 @@ import { Link } from "react-router-dom";function Signin() {
                     type="text"
                     name="username"
                     placeholder="Enter username"
-                    value={formData.username}
+                    value={loginForm.username}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Label>Password</Form.Label>                <Form.Group controlId="password">
+                <Form.Label>Password</Form.Label>{" "}
+                <Form.Group controlId="password">
                   <Form.Control
                     type="text"
                     name="password"
                     placeholder="Enter Password"
-                    value={formData.password}
+                    value={loginForm.password}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {/* <Link to="/"> */}
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="w-100 mt-3"
-                  >
-                    Sign In
-                  </Button>
-                {/* </Link> */}
+                <Button variant="primary" type="submit" className="w-100 mt-3">
+                  Sign In
+                </Button>
               </Form>
               <p className="mt-4">Or Create Account</p>
               <Link to="/newuser">
@@ -82,4 +92,5 @@ import { Link } from "react-router-dom";function Signin() {
       </Row>
     </Container>
   );
-}export default Signin;
+}
+export default Signin;
