@@ -36,7 +36,7 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@username", cust.userName);
+                    myCommand.Parameters.AddWithValue("@username", cust.username);
                     myCommand.Parameters.AddWithValue("@password", cust.password);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);

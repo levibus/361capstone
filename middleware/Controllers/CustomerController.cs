@@ -24,9 +24,9 @@ namespace _361capstone.Controllers
 
         [HttpGet]
 
-        public JsonResult Get()  // string username, string password
+        public JsonResult Get(string username, string password)  // string username, string password
         {
-            string query = @"SELECT * FROM Customer"; //WHERE username= @username AND password=@password"; //
+            string query = @"SELECT * FROM Customer WHERE username= @username AND password=@password;"; //WHERE username= @username AND password=@password"; //
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
@@ -36,8 +36,8 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    //myCommand.Parameters.AddWithValue("@username", username);
-                    //myCommand.Parameters.AddWithValue("@password", password);
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@password", password);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
@@ -49,9 +49,9 @@ namespace _361capstone.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(string firstName, string lastName, string username, string password) // string firstName, string lastName, string username, string password
+        public JsonResult Post(Customer cust) // string firstName, string lastName, string username, string password
         {
-            string query = @"INSERT INTO  Customer(firstName, lastName, username, password) values(@firstName, @lastName, @username, @password)";
+            string query = @"INSERT INTO  dbo.Customer (firstName, lastName, username, password) VALUES (@firstName, @lastName, @username, @password)";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
@@ -63,10 +63,10 @@ namespace _361capstone.Controllers
                 {
                     try
                     {
-                        myCommand.Parameters.AddWithValue("@firstName", firstName);
-                        myCommand.Parameters.AddWithValue("@lastName", lastName);
-                        myCommand.Parameters.AddWithValue("@username", username);
-                        myCommand.Parameters.AddWithValue("@password", password);
+                        myCommand.Parameters.AddWithValue("@firstName", cust.firstName);
+                        myCommand.Parameters.AddWithValue("@lastName", cust.lastName);
+                        myCommand.Parameters.AddWithValue("@username", cust.username);
+                        myCommand.Parameters.AddWithValue("@password", cust.password);
                         myReader = myCommand.ExecuteReader();
                         table.Load(myReader);
                         myReader.Close();
@@ -81,7 +81,7 @@ namespace _361capstone.Controllers
                 }
             }
 
-            return new JsonResult("Added Successfully");
+            return new JsonResult(cust.firstName);
         }
 
         //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT

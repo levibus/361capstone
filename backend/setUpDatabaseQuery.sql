@@ -24,7 +24,7 @@ CREATE TABLE Customer (
     lastName VARCHAR(50),
     username VARCHAR(50) UNIQUE,
     password VARCHAR(50),
-    addressId INT NOT NULL,
+    addressId INT,
     cardNumber VARCHAR(100),
     cardExp VARCHAR(100),
     cardCVC INT,
@@ -44,6 +44,8 @@ CREATE TABLE Product (
 	img NVARCHAR(500),
 	imgId INT
 );
+
+GO
 
 INSERT INTO Addresses (customerId, street, city, stateName, zipCode, country, roomNumber) VALUES 
 (6081, '234 busshel st', 'city1', 'NE', 41131, 'USA', 'addressId'),

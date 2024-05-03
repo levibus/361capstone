@@ -52,12 +52,12 @@ import axios from "axios";function HomePageComponent() {
                   src={product.img}
                   alt={product.itemName}
                 />
-                <Carousel.Caption>
+                <Modal.Body>
                   <h3>{product.itemName}</h3>
                   <p>Cost: ${product.cost}</p> 
                   <p>Size: {product.size}</p>
                   <p>SKU: {product.sku}</p>
-                </Carousel.Caption>
+                </Modal.Body>
               </Carousel.Item>
             ))}
           </Carousel>

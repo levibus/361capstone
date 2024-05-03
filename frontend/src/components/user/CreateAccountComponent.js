@@ -1,40 +1,34 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-function CreateAccount() {
-  const [formData, setFormData] = useState({
+import { useNavigate } from "react-router-dom";
+import axios from "axios";function CreateAccount() {
+  const [createAccountForm, setCreateAccountForm] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    username: "",
     password: "",
   });
-
-  const handleChange = (e) => {
+  const navigate = useNavigate();  const handleChange = (e) => {
     const { name, value } = e.target;
-    const newFormData = { ...formData, [name]: value };
-    setFormData(newFormData);
-    localStorage.setItem("formData", JSON.stringify(newFormData));
-  };
-
-  const handleSubmit = async (e) => {
+    const newCreateAccountForm = { ...createAccountForm, [name]: value };
+    setCreateAccountForm(newCreateAccountForm);
+  };  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch(
-        // Need our backend API url for signup.
-        // I believe this is in Program.cs routing function but nothing is defined so ... :O Not sure- ask on wendesday
-        // Example of what it would look like-
-        "http://localhost:5053/api/goofy",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (response.ok) {
+    const url = `http://localhost:5053/api/customer?firstName=${encodeURIComponent(
+      createAccountForm.firstName
+    )}&lastName=${encodeURIComponent(
+      createAccountForm.lastName
+    )}username=${encodeURIComponent(
+      createAccountForm.username
+    )}&password=${encodeURIComponent(createAccountForm.password)}`;    try {
+      const response = await axios.post(url, createAccountForm, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });      if (response.status === 200) {
+        navigate("/");
         console.log("Account created successfully!");
       } else {
         console.error("Error creating account:", response.statusText);
@@ -51,52 +45,48 @@ function CreateAccount() {
             <Card.Body>
               <h2 className="text-center mb-4">Sign Up</h2>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="newFirstName">
+                <Form.Group controlId="firstName">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
                     name="firstName"
                     placeholder="Enter First Name"
-                    value={formData.firstName}
+                    value={createAccountForm.firstName}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId="newLastName">
+                <Form.Group controlId="lastName">
                   <Form.Label>Last Name </Form.Label>
                   <Form.Control
                     type="text"
                     name="lastName"
                     placeholder="Enter Last Name"
-                    value={formData.lastName}
+                    value={createAccountForm.lastName}
                     onChange={handleChange}
                   />
                 </Form.Group>
                 <Form.Group controlId="newUser">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label>Username</Form.Label>
                   <Form.Control
-                    type="email"
-                    name="email"
-                    placeholder="Enter email"
-                    value={formData.email}
+                    type="username"
+                    name="username"
+                    placeholder="Enter username"
+                    value={createAccountForm.username}
                     onChange={handleChange}
                   />
-                </Form.Group>
-
-                <Form.Group controlId="newPassword">
+                </Form.Group>                <Form.Group controlId="newPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={formData.password}
+                    value={createAccountForm.password}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {/* <Link to="/"> */}
                 <Button variant="primary" type="submit" className="w-100 mt-3">
                   Create Account
                 </Button>
-                {/* </Link> */}
               </Form>
               <p className="mt-4">Returning User?</p>
               <Link to="/signin">
@@ -108,6 +98,4 @@ function CreateAccount() {
       </Row>
     </Container>
   );
-}
-
-export default CreateAccount;
+}export default CreateAccount;
