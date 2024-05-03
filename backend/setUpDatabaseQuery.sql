@@ -3,6 +3,15 @@
     DROP TABLE Cart;
     DROP TABLE Addresses;
 
+--IF OBJECT_ID('Product', 'U') IS NOT NULL
+--    DROP TABLE Product;
+--IF OBJECT_ID('Customer', 'U') IS NOT NULL
+--    DROP TABLE Customer;
+--IF OBJECT_ID('Cart', 'U') IS NOT NULL
+--    DROP TABLE Cart;
+--IF OBJECT_ID('Addresses', 'U') IS NOT NULL
+--    DROP TABLE Addresses;
+
 CREATE TABLE Addresses (
     addressId INT PRIMARY KEY IDENTITY,
     customerId INT NOT NULL,
@@ -12,10 +21,6 @@ CREATE TABLE Addresses (
     zipCode INT NOT NULL,
     country VARCHAR(100) NOT NULL,
     roomNumber VARCHAR(100)
-);
-
-CREATE TABLE Cart (
-    cartId INT PRIMARY KEY IDENTITY
 );
 
 CREATE TABLE Customer (
@@ -28,9 +33,9 @@ CREATE TABLE Customer (
     cardNumber VARCHAR(100),
     cardExp VARCHAR(100),
     cardCVC INT,
-    cartId INT,
+    --cartId INT,
     FOREIGN KEY (addressId) REFERENCES Addresses(addressId),
-    FOREIGN KEY (cartId) REFERENCES Cart(cartId)
+    --FOREIGN KEY (cartId) REFERENCES Cart(cartId)
 );
 
 CREATE TABLE Product (
@@ -45,7 +50,21 @@ CREATE TABLE Product (
 	imgId INT
 );
 
+CREATE TABLE Cart (
+    cartId INT PRIMARY KEY IDENTITY,
+    customerId INT,
+    firstName VARCHAR(50),
+    SKU INT,
+    Quantity INT,
+    FOREIGN KEY (customerId) REFERENCES Customer(customerId),
+    FOREIGN KEY (SKU) REFERENCES Product(SKU)
+);
+
 GO
+
+INSERT INTO Cart (firstName, Quantity) VALUES 
+('Jamal', 3),
+('Kamel', 5);
 
 INSERT INTO Addresses (customerId, street, city, stateName, zipCode, country, roomNumber) VALUES 
 (6081, '234 busshel st', 'city1', 'NE', 41131, 'USA', 'addressId'),
