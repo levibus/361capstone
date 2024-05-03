@@ -13,11 +13,11 @@ namespace _361capstone.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TestGetController : ControllerBase
+    public class CustomerTestController : ControllerBase
     {
 
         private readonly IConfiguration _configuration;
-        public TestGetController(IConfiguration configuration)
+        public CustomerTestController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -26,7 +26,7 @@ namespace _361capstone.Controllers
 
         public JsonResult Get()  // string username, string password
         {
-            string query = @"SELECT * FROM Cart"; //Customer JOIN Cart ON Customer.customerId = Cart.customerId;
+            string query = @"SELECT * FROM Customer"; //Customer JOIN Cart ON Customer.customerId = Cart.customerId;
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");

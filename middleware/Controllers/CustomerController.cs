@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using _361capstone.Models;
+using System.Reflection.Metadata;
+using System.Text.Json;
 
 namespace _361capstone.Controllers
 {
@@ -27,7 +29,7 @@ namespace _361capstone.Controllers
         public JsonResult Get(string username, string password)  // string username, string password
         {
             string query = @"SELECT * FROM Customer WHERE username= @username AND password=@password;"; //WHERE username= @username AND password=@password"; //
-
+            CurrentUser currentUser = new CurrentUser();
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
             SqlDataReader myReader;
@@ -45,6 +47,21 @@ namespace _361capstone.Controllers
                 }
             }
 
+            if (table.Rows.Count != 0)
+            {
+                //List<CurrentUser> user = datatable2list.ConvertDataTableToList<CurrentUser>(table);
+                currentUser.customerId = (int)table.Rows[0][0];
+                //currentUser.firstName = (string)table.Rows[1][0];
+                //currentUser.lastName = (string)table.Rows[2][0];
+                //currentUser.username = (string)table.Rows[3][0];
+                //currentUser.password = (string)table.Rows[4][0];
+                //currentUser.addressId = (int)table.Rows[5][0];
+                //currentUser.cardNumber = (string)table.Rows[6][0];
+                //currentUser.cardExp = (string)table.Rows[7][0];
+                //currentUser.cardCVC = (int)table.Rows[8][0];
+                //currentUser.cartId = (int)table.Rows[9][0];
+            }
+
             return new JsonResult(table);
         }
 
@@ -56,6 +73,7 @@ namespace _361capstone.Controllers
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
             SqlDataReader myReader;
+            string test = "test";
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
                 myCon.Open();
@@ -68,6 +86,7 @@ namespace _361capstone.Controllers
                         myCommand.Parameters.AddWithValue("@username", cust.username);
                         myCommand.Parameters.AddWithValue("@password", cust.password);
                         myReader = myCommand.ExecuteReader();
+                        test = "test2";
                         table.Load(myReader);
                         myReader.Close();
                         myCon.Close();
@@ -81,34 +100,7 @@ namespace _361capstone.Controllers
                 }
             }
 
-            query = @"INSERT INTO  dbo.Cart (firstName) VALUES (@firstName)";
-
-            DataTable cartTable = new DataTable();
-            string sqlDataSource2 = _configuration.GetConnectionString("ClothingStoreConnection");
-            SqlDataReader myReader2;
-            using (SqlConnection myCon2 = new SqlConnection(sqlDataSource))
-            {
-                myCon2.Open();
-                using (SqlCommand myCommand2 = new SqlCommand(query, myCon2))
-                {
-                    try
-                    {
-                        myCommand2.Parameters.AddWithValue("@firstName", cust.firstName);
-                        myReader2 = myCommand2.ExecuteReader();
-                        table.Load(myReader2);
-                        myReader2.Close();
-                        myCon2.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-
-                    }
-
-                }
-            }
-
-            return new JsonResult(cust.firstName);
+            return new JsonResult(test);
         }
 
         //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT
