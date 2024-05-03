@@ -81,6 +81,33 @@ namespace _361capstone.Controllers
                 }
             }
 
+            query = @"INSERT INTO  dbo.Cart (firstName) VALUES (@firstName)";
+
+            DataTable cartTable = new DataTable();
+            string sqlDataSource2 = _configuration.GetConnectionString("ClothingStoreConnection");
+            SqlDataReader myReader2;
+            using (SqlConnection myCon2 = new SqlConnection(sqlDataSource))
+            {
+                myCon2.Open();
+                using (SqlCommand myCommand2 = new SqlCommand(query, myCon2))
+                {
+                    try
+                    {
+                        myCommand2.Parameters.AddWithValue("@firstName", cust.firstName);
+                        myReader2 = myCommand2.ExecuteReader();
+                        table.Load(myReader2);
+                        myReader2.Close();
+                        myCon2.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+
+                    }
+
+                }
+            }
+
             return new JsonResult(cust.firstName);
         }
 
