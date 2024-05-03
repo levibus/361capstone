@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Signin() {
@@ -9,12 +9,12 @@ function Signin() {
     username: "",
     password: "",
   });
-  const navigate = useNavigate(); // Hook for navigation
+  const [Customer, setCustomer] = useState([]); // State to store user info
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newLoginForm = { ...loginForm, [name]: value };
     setloginForm(newLoginForm);
-    localStorage.setItem("loginForm", JSON.stringify(newLoginForm));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,8 +31,7 @@ function Signin() {
       });
       console.log("Received login:", response);
       if (response.status === 200) {
-        console.log("Account signing in successfully!");
-        navigate("/");
+        setCustomer(response.data);
       } else {
         console.error("Error signing into account:", response.statusText);
       }
@@ -82,7 +81,16 @@ function Signin() {
                   Sign In
                 </Button>
               </Form>
-              <p className="mt-4">Or Create Account</p>
+              {Customer.length > 0 ? (
+                Customer.map((customer) => (
+                  <div className="mt-4">
+                    <h3>Welcome Back, {customer.firstName}!</h3>
+                  </div>
+                ))
+              ) : (
+                <p className="mt-4">Or Create Account</p>
+              )}
+
               <Link to="/newuser">
                 <Button variant="primary">Sign Up</Button>
               </Link>

@@ -64,12 +64,12 @@ function HomePageComponent() {
                   src={product.img}
                   alt={product.itemName}
                 />
-                <Carousel.Caption>
+                <Modal.Footer>
                   <h3>{product.itemName}</h3>
                   <p>Price: ${product.cost}</p>
                   <p>Size: {product.size}</p>
                   <p>SKU: {product.sku}</p>
-                </Carousel.Caption>
+                </Modal.Footer>
               </Carousel.Item>
             ))}
           </Carousel>

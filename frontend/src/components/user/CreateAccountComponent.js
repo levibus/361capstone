@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CreateAccount() {
-  const [createAccountForm, setFormData] = useState({
+  const [createAccountForm, setCreateAccountForm] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newCreateAccountForm = { ...createAccountForm, [name]: value };
-    setFormData(newCreateAccountForm);
-    localStorage.setItem(
-      "createAccountForm",
-      JSON.stringify(newCreateAccountForm)
-    );
+    setCreateAccountForm(newCreateAccountForm);
   };
 
   const handleSubmit = async (e) => {
@@ -32,14 +30,15 @@ function CreateAccount() {
     )}&password=${encodeURIComponent(createAccountForm.password)}`;
 
     try {
-      const response = await axios.get(url, createAccountForm, {
+      const response = await axios.post(url, createAccountForm, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
+        navigate("/");
         console.log("Account created successfully!");
       } else {
         console.error("Error creating account:", response.statusText);
@@ -56,7 +55,7 @@ function CreateAccount() {
             <Card.Body>
               <h2 className="text-center mb-4">Sign Up</h2>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="newFirstName">
+                <Form.Group controlId="firstName">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
@@ -66,7 +65,7 @@ function CreateAccount() {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId="newLastName">
+                <Form.Group controlId="lastName">
                   <Form.Label>Last Name </Form.Label>
                   <Form.Control
                     type="text"
@@ -77,12 +76,12 @@ function CreateAccount() {
                   />
                 </Form.Group>
                 <Form.Group controlId="newUser">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label>Username</Form.Label>
                   <Form.Control
-                    type="email"
-                    name="email"
-                    placeholder="Enter email"
-                    value={createAccountForm.email}
+                    type="username"
+                    name="username"
+                    placeholder="Enter username"
+                    value={createAccountForm.username}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -97,11 +96,9 @@ function CreateAccount() {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {/* <Link to="/"> */}
                 <Button variant="primary" type="submit" className="w-100 mt-3">
                   Create Account
                 </Button>
-                {/* </Link> */}
               </Form>
               <p className="mt-4">Returning User?</p>
               <Link to="/signin">
