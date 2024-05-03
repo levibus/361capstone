@@ -1,14 +1,14 @@
     DROP TABLE Product;
     DROP TABLE Customer;
-    DROP TABLE Cart;
+    --DROP TABLE Cart;
     DROP TABLE Addresses;
 
 --IF OBJECT_ID('Product', 'U') IS NOT NULL
 --    DROP TABLE Product;
 --IF OBJECT_ID('Customer', 'U') IS NOT NULL
 --    DROP TABLE Customer;
---IF OBJECT_ID('Cart', 'U') IS NOT NULL
---    DROP TABLE Cart;
+IF OBJECT_ID('Cart', 'U') IS NOT NULL
+    DROP TABLE Cart;
 --IF OBJECT_ID('Addresses', 'U') IS NOT NULL
 --    DROP TABLE Addresses;
 
