@@ -1,16 +1,19 @@
-    DROP TABLE Product;
-    DROP TABLE Customer;
-    --DROP TABLE Cart;
-    DROP TABLE Addresses;
+    --DROP TABLE Product;
+    --DROP TABLE Customer;
+    ----DROP TABLE Cart;
+    --DROP TABLE Addresses;
 
---IF OBJECT_ID('Product', 'U') IS NOT NULL
---    DROP TABLE Product;
---IF OBJECT_ID('Customer', 'U') IS NOT NULL
---    DROP TABLE Customer;
+IF OBJECT_ID('Product', 'U') IS NOT NULL
+    DROP TABLE Product;
+IF OBJECT_ID('Customer', 'U') IS NOT NULL
+    DROP TABLE Customer;
 IF OBJECT_ID('Cart', 'U') IS NOT NULL
     DROP TABLE Cart;
---IF OBJECT_ID('Addresses', 'U') IS NOT NULL
---    DROP TABLE Addresses;
+IF OBJECT_ID('Addresses', 'U') IS NOT NULL
+    DROP TABLE Addresses;
+IF OBJECT_ID('CurrentUser', 'U') IS NOT NULL
+	DROP TABLE CurrentUser;
+
 
 CREATE TABLE Addresses (
     addressId INT PRIMARY KEY IDENTITY,
@@ -57,19 +60,13 @@ CREATE TABLE CurrentUser (
 
 CREATE TABLE Cart (
     cartId INT PRIMARY KEY IDENTITY,
-    customerId INT,
+    customerId INT FOREIGN KEY REFERENCES Customer(customerId),
     firstName VARCHAR(50),
-    SKU INT,
-    Quantity INT,
-    FOREIGN KEY (customerId) REFERENCES Customer(customerId),
-    FOREIGN KEY (SKU) REFERENCES Product(SKU)
+    SKU INT FOREIGN KEY REFERENCES Product(SKU),
+    Quantity INT
 );
 
 GO
-
-INSERT INTO Cart (firstName, Quantity) VALUES 
-('Jamal', 3),
-('Kamel', 5);
 
 INSERT INTO Addresses (customerId, street, city, stateName, zipCode, country, roomNumber) VALUES 
 (6081, '234 busshel st', 'city1', 'NE', 41131, 'USA', 'addressId'),
@@ -122,3 +119,7 @@ INSERT INTO Product (itemName, size, cost, rating, manufacturer, categoryId, img
 ('Sweatpant - Grey', 'S-XL', 5, 5.0, 'LazyDog', 505, 'https://image.tensorartassets.com/cdn-cgi/image/anim=false,w=2560,f=jpeg,q=85/posts/images/705314126552933762/484febfe-9479-4de5-847f-d7e37d99f2df.jpg', 20), 
 ('Sweatpants - Black', 'S-XL', 5, 5.0, 'LazyDog', 505, 'https://www.wfla.com/wp-content/uploads/sites/71/2021/10/Black-Cat-2.jpg', 21),
 ('Sweatpants - Purple', 'S-XL', 5, 5.0, 'LazyDog', 505, 'https://i.pinimg.com/736x/7c/83/ad/7c83ad364b46b3f49628d6a60d3a8fb8.jpg', 22); -- pinterest
+
+INSERT INTO Cart (customerId, SKU, Quantity) VALUES 
+(1, 2, 3),
+(2, 4, 5); 
