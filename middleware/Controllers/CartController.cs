@@ -50,18 +50,20 @@ namespace _361capstone.Controllers
         [HttpPost]
         public JsonResult Post(Cart cart) 
         {
-            string query = @"IF EXISTS (SELECT * FROM Cart WHERE customerId = @customerId AND SKU = @SKU)
-    BEGIN
-        UPDATE Cart SET Quantity = Quantity + @Quantity WHERE customerId = @customerId AND SKU = @SKU;
-    END
-    ELSE
-    BEGIN
-        INSERT INTO Cart (customerId, SKU, Quantity) VALUES (@customerId, @SKU, @Quantity);
-    END;";
+            //        string query = @"IF EXISTS (SELECT * FROM Cart WHERE customerId = @customerId AND SKU = @SKU)
+            //BEGIN
+            //    UPDATE Cart SET Quantity = Quantity + @Quantity WHERE customerId = @customerId AND SKU = @SKU;
+            //END
+            //ELSE
+            //BEGIN
+            //    INSERT INTO Cart (customerId, SKU, Quantity) VALUES (@customerId, @SKU, @Quantity); 
+            //END;";
+            string query = @"INSERT INTO  dbo.Cart (Quantity) VALUES (@Quantity)";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
             SqlDataReader myReader;
+            string test = "test";
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
                 myCon.Open();
@@ -69,13 +71,14 @@ namespace _361capstone.Controllers
                 {
                     try
                     {
-                        myCommand.Parameters.AddWithValue("@customerId", cart.customerId);
-                        myCommand.Parameters.AddWithValue("@SKU", cart.SKU);
+                        //myCommand.Parameters.AddWithValue("@customerId", cart.customerId);
+                        //myCommand.Parameters.AddWithValue("@SKU", cart.SKU);
                         myCommand.Parameters.AddWithValue("@Quantity", cart.Quantity);
                         myReader = myCommand.ExecuteReader();
                         table.Load(myReader);
                         myReader.Close();
                         myCon.Close();
+                        test = "test2";
                     }
                     catch (Exception e)
                     {
@@ -86,7 +89,7 @@ namespace _361capstone.Controllers
                 }
             }
 
-            return new JsonResult(cart.SKU);
+            return new JsonResult(test);
         }
 
         //[HttpPut] // IMPLEMENT IF TIME, BUT NOT VERY IMPORTANT

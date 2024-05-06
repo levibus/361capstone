@@ -50,6 +50,11 @@ CREATE TABLE Product (
 	imgId INT
 );
 
+CREATE TABLE CurrentUser (
+	customerId INT,
+	cartId INT
+);
+
 CREATE TABLE Cart (
     cartId INT PRIMARY KEY IDENTITY,
     customerId INT,
