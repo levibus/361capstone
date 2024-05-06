@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = unitTests
-build_property.ProjectDir = C:\Users\Levi Busching\Documents\CS361\361capstone\unitTests\
+build_property.ProjectDir = C:\Users\clara\source\repos\361CapstoneCommit\361capstone\unitTests\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
