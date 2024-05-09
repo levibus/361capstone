@@ -7,7 +7,9 @@ import MyNavbar from "./components/MyNavbar";
 import Signin from "./pages/user/SigninPage";
 import ShirtsPage from "./pages/Categories/ShirtsPage";
 import PantsPage from "./pages/Categories/PantsPage";
+import ShoesPage from "./pages/Categories/ShoesPage";
 import CreateAccountPage from "./pages/user/CreateAccountPage";
+
 // import {BrowserRouter, Route, Switch, NavLink} from 'react-router-dom';     from video
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
             <Route path="/newuser" element={<CreateAccountPage />} />
             <Route path="/categories/pants" element={<PantsPage />} />
             <Route path="/categories/shirts" element={<ShirtsPage />} />
+            <Route path="/categories/shoes" element={<ShoesPage />} />
           </Routes>
         </div>
       </div>
