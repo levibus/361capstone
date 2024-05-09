@@ -24,7 +24,7 @@ namespace _361capstone.Controllers
 
         [HttpGet]
 
-        public JsonResult Get(Product prod)  // string username, string password
+        public JsonResult Get(int categoryId)  // string username, string password
         {
             string query = @"SELECT * from Product WHERE categoryId=@categoryId"; 
 
@@ -36,7 +36,7 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@categoryId", prod.categoryId);
+                    myCommand.Parameters.AddWithValue("@categoryId", categoryId);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();

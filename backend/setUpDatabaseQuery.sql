@@ -1,6 +1,6 @@
     --DROP TABLE Product;
     --DROP TABLE Customer;
-    ----DROP TABLE Cart;
+    --DROP TABLE Cart;
     --DROP TABLE Addresses;
 
 IF OBJECT_ID('Product', 'U') IS NOT NULL
@@ -43,7 +43,7 @@ CREATE TABLE Customer (
 
 CREATE TABLE Product (
     SKU INT PRIMARY KEY IDENTITY,
-    itemName VARCHAR(200) NOT NULL,
+    itemName VARCHAR(200),
     size VARCHAR(50),
     cost FLOAT,
     rating FLOAT,

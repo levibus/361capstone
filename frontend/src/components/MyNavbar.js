@@ -34,8 +34,8 @@ function MyNavbar() {
             <NavDropdown.Item href="/categories/shirts">
               Shirts
             </NavDropdown.Item>
-            <NavDropdown.Item href="/categories/accessories">
-              Accessories
+            <NavDropdown.Item href="/categories/shoes">
+              Shoes
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link as={RRNavLink} to="/sale">
