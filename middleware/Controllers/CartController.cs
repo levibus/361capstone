@@ -58,7 +58,6 @@ namespace _361capstone.Controllers
             BEGIN
                 INSERT INTO Cart (customerId, SKU, Quantity) VALUES (@customerId, @SKU, @Quantity); 
             END;";
-            //string query = @"INSERT INTO  dbo.Cart (Quantity) VALUES (@Quantity)";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
