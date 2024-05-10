@@ -1,8 +1,3 @@
-    --DROP TABLE Product;
-    --DROP TABLE Customer;
-    --DROP TABLE Cart;
-    --DROP TABLE Addresses;
-
 IF OBJECT_ID('Product', 'U') IS NOT NULL
     DROP TABLE Product;
 IF OBJECT_ID('Customer', 'U') IS NOT NULL
@@ -13,7 +8,6 @@ IF OBJECT_ID('Addresses', 'U') IS NOT NULL
     DROP TABLE Addresses;
 IF OBJECT_ID('CurrentUser', 'U') IS NOT NULL
 	DROP TABLE CurrentUser;
-
 
 CREATE TABLE Addresses (
     addressId INT PRIMARY KEY IDENTITY,
@@ -36,9 +30,7 @@ CREATE TABLE Customer (
     cardNumber VARCHAR(100),
     cardExp VARCHAR(100),
     cardCVC INT,
-    --cartId INT,
     FOREIGN KEY (addressId) REFERENCES Addresses(addressId),
-    --FOREIGN KEY (cartId) REFERENCES Cart(cartId)
 );
 
 CREATE TABLE Product (
