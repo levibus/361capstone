@@ -24,7 +24,7 @@ namespace _361capstone.Controllers
 
         [HttpGet]
 
-        public JsonResult Get(Cart cart)
+        public JsonResult Get(int customerId)
         {
             string query = @"SELECT * FROM Cart WHERE customerId = @customerId;";
 
@@ -36,14 +36,13 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@customerId", cart.customerId);
+                    myCommand.Parameters.AddWithValue("@customerId", customerId);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
                     myCon.Close();
                 }
             }
-
             return new JsonResult(table);
         }
     }
