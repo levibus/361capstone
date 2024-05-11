@@ -54,13 +54,13 @@ import axios from "axios";function PantsComponent() {
                   src={pants.img}
                   alt={pants.itemName}
                 />
-                <Modal.Footer>
+                <Modal.Body>
                   <h3>{pants.itemName}</h3>
                   <p>Price: ${pants.cost}</p>
                   <p>Size: {pants.size}</p>
                   <p>SKU: {pants.sku}</p>
                   <p>add to cart button</p>
-                </Modal.Footer>
+                </Modal.Body>
               </Carousel.Item>
             ))}
           </Carousel>

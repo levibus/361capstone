@@ -44,7 +44,6 @@ namespace _361capstone.Controllers
                     myCon.Close();
                 }
             }
-
             return new JsonResult(table);
         }
     }
