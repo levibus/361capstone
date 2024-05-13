@@ -29,7 +29,6 @@ namespace _361capstone.Controllers
         public JsonResult Get(string username, string password)  
         {
             string query = @"SELECT * FROM Customer WHERE username= @username AND password=@password;"; 
-            CurrentUser currentUser = new CurrentUser();
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
             SqlDataReader myReader;
