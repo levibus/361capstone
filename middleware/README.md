@@ -23,8 +23,8 @@ adds a customer to the database given a Customer-type variable that contains the
 *not implemented*
 
 ## CustomerTestController
-Get()
-- returns every customer
+**Get()**
+returns every customer
 
 ## CartController.cs
 **Get(Cart cart)**
