@@ -24,9 +24,9 @@ namespace _361capstone.Controllers
 
         [HttpGet]
 
-        public JsonResult Get()  
+        public JsonResult Get(Product prod)  
         {
-            string query = @"SELECT * from Product"; 
+            string query = @"SELECT * from Product WHERE SKU=@SKU"; 
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ClothingStoreConnection");
@@ -36,6 +36,7 @@ namespace _361capstone.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
+                    myCommand.Parameters.AddWithValue("@SKU", prod.SKU);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
