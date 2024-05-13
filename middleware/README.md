@@ -14,13 +14,16 @@ Defines the addresses class *not implemented*
 
 ## CustomerController.cs
 Get(string username, string password)
-- returns customer given username and password -
+returns customer given username and password 
+
 Post(Customer cust)
-- adds a customer to the database given a Customer-type variable that contains the firstName, lastName, username, and password\
+adds a customer to the database given a Customer-type variable that contains the firstName, lastName, username, and password
+
 Put(int customerId, string firstName)
-- *not implemented*\
+not implemented
+
 Delete(int customerId)
-- *not implemented*
+not implemented
 
 ## CustomerTestController
 Get()
