@@ -10,7 +10,7 @@ Defines the cart class
 Defines the product class
 
 ## Addresses.cs
-Defines the addresses class *not implemented
+Defines the addresses class *not implemented*
 
 ## CustomerController.cs
 Get(string username, string password)
@@ -18,9 +18,9 @@ Get(string username, string password)
 Post(Customer cust)
 - adds a customer to the database given a Customer-type variable that contains the firstName, lastName, username, and password
 Put(int customerId, string firstName)
-- *not implemented
+- *not implemented*
 Delete(int customerId)
-- *not implemented
+- *not implemented*
 
 ## CustomerTestController
 Get()
